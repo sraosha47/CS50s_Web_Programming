@@ -9,6 +9,11 @@
 
     </style>
     <script>
+        //when back arrow is clicked, show previous section
+        window.onpopstate = function(event) {
+            console.log(event.state.section);
+            showSection(event.state.section)
+        }
 
         //shows given section
         function showSection(section) {
@@ -27,10 +32,13 @@
             //add button functionality
             document.querySelectorAll('button').forEach(button => {
                 button.onclick = function() {
+
+                    //add the current state to the history
+                    history.pushState({section: section}, "", `section${section}`);
                     showSection(this.dataset.section);
                 }
-            })
-        })
+            });
+        });
     </script>
 </head>
 <body>
