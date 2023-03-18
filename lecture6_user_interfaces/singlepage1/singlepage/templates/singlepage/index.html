@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single Page</title>
+    <style>
+
+    </style>
+    <script>
+
+        //shows given section
+        function showSection(section) {
+
+            //find section text from server
+            fetch(`/sections/${section}`)
+            .then(response => response.text())
+            .then(text => {
+                //log text and display on page
+                console.log(text);
+                document.querySelector('#content').innerHTML = text;
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            //add button functionality
+            document.querySelectorAll('button').forEach(button => {
+                button.onclick = function() {
+                    showSection(this.dataset.section);
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+    <h1>Hello!</h1>
+    <button data-section="1">section1</button>
+    <button data-section="2">section2</button>
+    <button data-section="3">section3</button>
+    <div id="content">
+    </div>
+</body>
+</html>
