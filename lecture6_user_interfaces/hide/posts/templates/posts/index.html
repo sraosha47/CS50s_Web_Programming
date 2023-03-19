@@ -37,6 +37,13 @@
             }
         };
 
+        document.addEventListener('click', event =>{
+            const element = event.target;
+            if (element.className === 'hide'){
+                element.parentElement.remove();
+            }
+        })
+
         //function loading next set of posts
         function load(){
             //set start and end post numbers and update counter
